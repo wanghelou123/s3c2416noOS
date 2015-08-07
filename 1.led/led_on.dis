@@ -1,0 +1,110 @@
+
+led_on_elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e3a00453 	mov	r0, #1392508928	; 0x53000000
+   4:	e3a01000 	mov	r1, #0	; 0x0
+   8:	e5801000 	str	r1, [r0]
+   c:	e59f0048 	ldr	r0, [pc, #72]	; 5c <delay_loop+0x10>
+  10:	e3a01001 	mov	r1, #1	; 0x1
+  14:	e5801000 	str	r1, [r0]
+  18:	e59f0040 	ldr	r0, [pc, #64]	; 60 <delay_loop+0x14>
+  1c:	e3a02a01 	mov	r2, #4096	; 0x1000
+
+00000020 <led_blink>:
+  20:	e3a01000 	mov	r1, #0	; 0x0
+  24:	e5801000 	str	r1, [r0]
+  28:	eb000006 	bl	48 <delay>
+  2c:	e3a01001 	mov	r1, #1	; 0x1
+  30:	e5801000 	str	r1, [r0]
+  34:	eb000003 	bl	48 <delay>
+  38:	e2422001 	sub	r2, r2, #1	; 0x1
+  3c:	e3520000 	cmp	r2, #0	; 0x0
+  40:	1afffff6 	bne	20 <led_blink>
+
+00000044 <halt>:
+  44:	eafffffe 	b	44 <halt>
+
+00000048 <delay>:
+  48:	e3a01601 	mov	r1, #1048576	; 0x100000
+
+0000004c <delay_loop>:
+  4c:	e3510000 	cmp	r1, #0	; 0x0
+  50:	e2411001 	sub	r1, r1, #1	; 0x1
+  54:	1afffffc 	bne	4c <delay_loop>
+  58:	e1a0f00e 	mov	pc, lr
+  5c:	56000010 	.word	0x56000010
+  60:	56000014 	.word	0x56000014
+Disassembly of section .debug_aranges:
+
+00000000 <.debug_aranges>:
+   0:	0000001c 	andeq	r0, r0, ip, lsl r0
+   4:	00000002 	andeq	r0, r0, r2
+   8:	00040000 	andeq	r0, r4, r0
+	...
+  14:	00000064 	andeq	r0, r0, r4, rrx
+	...
+Disassembly of section .debug_info:
+
+00000000 <.debug_info>:
+   0:	0000004a 	andeq	r0, r0, sl, asr #32
+   4:	00000002 	andeq	r0, r0, r2
+   8:	01040000 	tsteq	r4, r0
+	...
+  14:	00000064 	andeq	r0, r0, r4, rrx
+  18:	5f64656c 	svcpl	0x0064656c
+  1c:	532e6e6f 	teqpl	lr, #1776	; 0x6f0
+  20:	6f772f00 	svcvs	0x00772f00
+  24:	732f6b72 	teqvc	pc, #116736	; 0x1c800
+  28:	326b646d 	rsbcc	r6, fp, #1828716544	; 0x6d000000
+  2c:	2f363134 	svccs	0x00363134
+  30:	734f6f6e 	movtvc	r6, #65390	; 0xff6e
+  34:	64656c2f 	strbtvs	r6, [r5], #-3119
+  38:	554e4700 	strbpl	r4, [lr, #-1792]
+  3c:	20534120 	subscs	r4, r3, r0, lsr #2
+  40:	38312e32 	ldmdacc	r1!, {r1, r4, r5, r9, sl, fp, sp}
+  44:	2e30352e 	cdpcs	5, 3, cr3, cr0, cr14, {1}
+  48:	00322e30 	eorseq	r2, r2, r0, lsr lr
+  4c:	Address 0x0000004c is out of bounds.
+
+Disassembly of section .debug_abbrev:
+
+00000000 <.debug_abbrev>:
+   0:	10001101 	andne	r1, r0, r1, lsl #2
+   4:	12011106 	andne	r1, r1, #-2147483647	; 0x80000001
+   8:	1b080301 	blne	200c14 <__bss_end__+0x1f8bb0>
+   c:	13082508 	movwne	r2, #34056	; 0x8508
+  10:	00000005 	andeq	r0, r0, r5
+Disassembly of section .debug_line:
+
+00000000 <.debug_line>:
+   0:	00000048 	andeq	r0, r0, r8, asr #32
+   4:	001f0002 	andseq	r0, pc, r2
+   8:	01020000 	tsteq	r2, r0
+   c:	000d0efb 	strdeq	r0, [sp], -fp
+  10:	01010101 	tsteq	r1, r1, lsl #2
+  14:	01000000 	tsteq	r0, r0
+  18:	00010000 	andeq	r0, r1, r0
+  1c:	5f64656c 	svcpl	0x0064656c
+  20:	532e6e6f 	teqpl	lr, #1776	; 0x6f0
+  24:	00000000 	andeq	r0, r0, r0
+  28:	02050000 	andeq	r0, r5, #0	; 0x0
+  2c:	00000000 	andeq	r0, r0, r0
+  30:	302f2f1a 	eorcc	r2, pc, sl, lsl pc
+  34:	302f2f2f 	eorcc	r2, pc, pc, lsr #30
+  38:	30322f30 	eorscc	r2, r2, r0, lsr pc
+  3c:	2f30312f 	svccs	0x0030312f
+  40:	3031302f 	eorscc	r3, r1, pc, lsr #32
+  44:	022f2f2f 	eoreq	r2, pc, #188	; 0xbc
+  48:	01010006 	tsteq	r1, r6
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001741 	andeq	r1, r0, r1, asr #14
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000d 	andeq	r0, r0, sp
+  10:	00543405 	subseq	r3, r4, r5, lsl #8
+  14:	01080206 	tsteq	r8, r6, lsl #4
