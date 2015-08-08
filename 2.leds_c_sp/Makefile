@@ -1,5 +1,5 @@
 led.bin: start.o main.o
-	arm-linux-ld -Ttext 0x30000000 -o led.elf $^
+	arm-linux-ld -Ttext 0x00000000 -o led.elf $^
 	arm-linux-objcopy -O binary led.elf led.bin
 	arm-linux-objdump -D led.elf > led_elf.dis
 

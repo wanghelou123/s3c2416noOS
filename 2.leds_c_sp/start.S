@@ -8,7 +8,7 @@ _start:
 	str r1, [r0] 
 		 
 	// 设置栈
-	ldr sp, =0x40002000
+	ldr sp, =0x00002000
 	
 	// 调用C函数点灯
 	bl main
