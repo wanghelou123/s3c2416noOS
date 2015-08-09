@@ -13,8 +13,6 @@ int main()
 	while(1) {
 		c = getchar();
 		putchar(c);
-		//putchar('C');
-		//delay(0x100000);
 	}
 	return 0;
 }

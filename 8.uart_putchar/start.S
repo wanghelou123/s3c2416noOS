@@ -7,7 +7,7 @@ _start:
 	str r1, [r0]
 
 	//设置栈
-	ldr sp, =0x00000200
+	ldr sp, =0x00002000
 
 	//开启i-cache
 	ldr r1, =(1<<12)
