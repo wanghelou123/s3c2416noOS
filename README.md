@@ -19,3 +19,41 @@ ldr sp, =0x00000200
 ldr sp, =0x40000200
 
 
+三、
+1、s3c2416有两个PLL: MPLL 和 EPLL
+MPLL用于产生 ARMCLK, HCLK, PCLK, DDRCLK
+EPLL用于产生 USBHOST, LCDCLK, I2SCLK, UARTCLK
+2、实始化时钟分为4步：
+1)设置分频
+CLKDIV0:0x4C00_0024
+2)设置锁定时间
+LOCKCON0:0x4C00_0000
+3)设置PLL
+MPLLCON:0x4C00_0010
+4)设置各种时钟开关
+CLKSRC:0x4C00_0020
+
+四、UART
+1、s3c2416有4个uart, 每个uart包含一个波特率产生器、发送器、接收器、一个控制单元
+波特率产生器可以靠PCLK, EXTUARTCLK, EPLL产生时钟，发送器和接收器包含64字节的FIFO和数据移位
+
+2、9针串口引脚定义
+针脚  定义            符号
+1     载波检测        DCD
+2     接收数据        RXD
+3     发送数据        TXD
+4     数据终端准备好  DTR
+5     信号地          SG
+6     数据准备好      DSR
+7     请求发送        RTS
+8     清除发送        CTS
+9     振铃提示        RI
+
+3、初始化串口
+1）配置引脚用于RX/TX功能
+	GPHCON 0x56000070
+	GPHDAT 0x56000074
+	GPH0:TXD[0]
+	GPH1:TXD[0]
+2）设置数据格式
+3）设置波特率
